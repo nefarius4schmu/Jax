@@ -1,7 +1,7 @@
 /**
  * JAX v1.1.0
  * jQuery Plugin
- * Shortcut extention for jQuery's ajax function
+ * Shortcut framework for jQuery's ajax function
  * Copyright 2015 Steffen Lange
  * Licensed under the MIT license
  *
