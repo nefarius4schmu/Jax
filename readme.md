@@ -11,14 +11,16 @@ Include all necessary .js-files inside the head-tag of the page.
 
 ```html
 <head>
+	<!-- jQuery Library -->
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- Jax Plugin -->
     <script src="jquery.jax.js"></script>
 </head>
 ```
 
 ### Usage
 
-You can add settings using the data-jax attribute or call $(element).jax() to initialize jax on the element.
+Perform shortcut ajax calls using `data-jax` attribute or  use the jQuery plugin `$(element).jax()` to initialize an ajax call on the element.
 
 Directly on HTML-Element:
 
@@ -39,7 +41,7 @@ $('#target').jax({
 
 ### Callback
 
-Manipulate the loaded content using a callback function.
+Make use of loaded content using a callback function.
 
 HTML:
 ```html
@@ -59,16 +61,19 @@ $('#target').jax({
 Callback function:
 ```javascript
 window.onContentLoad = function(response){
-	if(response.success && response.content.valid)
-		$(this).html(repsonse.content.value);
+	if(response.success && response.content.valid){
+		$(this).html(response.content.value);
+	}else{
+		$(this).html('Error');
+	}
 };
 ```
 
+The callback function is fired **always** after an ajax call has been finished or failed.  Therefore it's useful to give users some more feedback about errors or to manipulate the loaded content.
+
 #### Response
 
-The callback function is fired always after an ajax call has been finished or failed.  Therefore it's useful to give users some more feedback about errors.
-
-The parameter `response` sent by the callback function contains information about the loaded content and success or failure of the ajax call. `this` is set to the targeting DOM element.
+The parameter `response` sent by the callback function contains information about the loaded content and success or failure of the performed ajax call. `this` is set to the target DOM element.
 
 Property | Type | Description
 -------- |:---- |:-----------
@@ -82,7 +87,7 @@ message | string | Contains thrown error message if ajax call failed
 
 ### Modes
 
-Modes are used to change to behavior of an ajax call.
+Modes are used to change the behavior of an ajax call.
 
 Example #1 - Append
 ```html
